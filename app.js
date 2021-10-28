@@ -1,3 +1,4 @@
+const containerHTML = document.getElementById("container");
 (async()=>{
     let contenedorArray = []
     const resp = await fetch('https://api.github.com/users/KumanEnrique')
@@ -15,6 +16,23 @@
             return elemento
         })
         contenedorArray = [...contenedorArray,...arreglo]
+    }
+    const sortArray = contenedorArray.sort((a, b) => b.created_at - a.created_at  )
+    for (let i = 0;i<sortArray.length;i++){
+        const {description,name,html_url,topics} = sortArray[i]
+        containerHTML.innerHTML += `
+            <div class="row mb-3">
+                <div class="col-sm-6 mx-auto mb-3">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            <h3><a href="${html_url}">${name} </a></h3>
+                        </div>
+                        <div class="card-body">${description}</div>
+                        <div class="card-footer">${topics}</div>
+                    </div>
+                </div>
+            </div>
+        `
     }
     
 
