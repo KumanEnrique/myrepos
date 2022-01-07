@@ -19,12 +19,16 @@ const containerHTML = document.getElementById("container");
     }
     const sortArray = contenedorArray.sort((a, b) => b.created_at - a.created_at  )
     for (let i = 0;i<sortArray.length;i++){
-        const {description,name,html_url,topics} = sortArray[i]
+        const {description,name,html_url,topics,created_at} = sortArray[i]
         containerHTML.innerHTML += `
             <div class="row mb-3">
-                <div class="col-sm-6 mx-auto mb-3">
+                <div class="col-sm-12 col-lg-8 mx-auto mb-3">
                     <div class="card text-center">
                         <div class="card-header">
+                            <div>
+                                <h2>creado en:</h2>
+                                <p>${created_at}</p>
+                            </div>
                             <h3><a href="${html_url}">${name} </a></h3>
                         </div>
                         <div class="card-body">${description}</div>
@@ -36,6 +40,6 @@ const containerHTML = document.getElementById("container");
     }
     
 
-console.log(contenedorArray)
+    //console.log(contenedorArray)
     console.log(contenedorArray.sort((a, b) => b.created_at - a.created_at  ) );
 })();
